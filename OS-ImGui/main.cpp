@@ -4,21 +4,25 @@
 void DrawCallBack()
 {
 	ImGui::SetNextWindowSize(ImVec2(400, 0));
-	ImGui::Begin("Menu");
+	ImGui::Begin("Menu", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
 	{
-		ImGui::Text("This is a text.");
-		if (ImGui::Button("Button"))
-		{
-			//...
-		}
-		static bool a = false, b = false, c = false, d = false;
-		static float Value = 0;
+		Gui.NewText("This Text is centered", true);
+		Gui.NewTextColored("And colored it", ImColor(255,60,0,255), true);
+		Gui.OpenWebpageButton("Open Webpage", "https://github.com/CowNowK/ImGuiExpand");
+		static bool a = false, b = false, c = false, d = false, e = false, f = false;
+		static float Value1 = 25, Value2 = 75;
+		static float Color = 0.f;
 		float min = 0, max = 100;
-		Gui.MyCheckBox("CheckBox1", &a);
-		Gui.MyCheckBox2("CheckBox2", &b);
+		
 		Gui.MyCheckBox3("CheckBox3", &c);
 		Gui.MyCheckBox4("CheckBox4", &d);
-		Gui.SliderScalarEx1("[Slider]", ImGuiDataType_Float, &Value, &min, &max, "%.1f", ImGuiSliderFlags_None);
+		ImGui::NewLine();
+		Gui.SwitchButton("Switch Button", &e);
+		Gui.SwitchButton2("Switch Button 2", &a);
+		Gui.SwitchButton3("Switch Button 3", &b);
+		ImGui::ColorEdit4("Color Editor", &Color, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+		Gui.SliderScalarEx1("[Slider1]", ImGuiDataType_Float, &Value1, &min, &max, "%.1f", ImGuiSliderFlags_None);
+		Gui.SliderScalarEx2("[Slider2]", ImGuiDataType_Float, &Value2, &min, &max, "%.1f", ImGuiSliderFlags_None);
 	}ImGui::End();
 
 	Gui.ShadowRectFilled({ 50,50 }, { 100,100 }, ImColor(220, 190, 99, 255), ImColor(50, 50, 50, 255), 9, { 0,0 }, 10);
