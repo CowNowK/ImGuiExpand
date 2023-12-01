@@ -1,15 +1,6 @@
 #pragma once
 #include "OS-ImGui_External.h"
 
-/****************************************************
-* Copyright (C)	: Liv
-* @file			: OS-ImGui.h
-* @author		: Liv
-* @email		: 1319923129@qq.com
-* @version		: 1.0
-* @date			: 2023/9/17	11:25
-****************************************************/
-
 namespace OSImGui
 {
 #ifdef _CONSOLE

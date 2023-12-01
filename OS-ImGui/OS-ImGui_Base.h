@@ -9,15 +9,6 @@
 #include <dwmapi.h>
 #pragma comment(lib,"dwmapi.lib")
 
-/****************************************************
-* Copyright (C)	: Liv
-* @file			: OS-ImGui_Base.h
-* @author		: Liv
-* @email		: 1319923129@qq.com
-* @version		: 1.0
-* @date			: 2023/9/17	11:22
-****************************************************/
-
 namespace OSImGui
 {
 	class D3DDevice
@@ -60,19 +51,19 @@ namespace OSImGui
 	class OSImGui_Base
 	{
 	public:
-		// 回调函数
+		// Callback Function
 		std::function<void()> CallBackFn = nullptr;
-		// 退出标识
+		// End flag
 		bool EndFlag = false;
 	protected:
-		// 窗口数据
+		// Window data
 		WindowData Window;
-		// 目标窗口数据
+		// Object window data
 		WindowData DestWindow;
 	public:
-		// 创建一个新窗口
+		// Create a new window
 		virtual void NewWindow(std::string WindowName, Vec2 WindowSize, std::function<void()> CallBack) = 0;
-		// 退出
+		// Quit
 		virtual void Quit() { EndFlag = true; };
 	public:
 		virtual bool CreateMyWindow() = 0;
