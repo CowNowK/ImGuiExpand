@@ -3,6 +3,7 @@
 
 void DrawCallBack()
 {
+	ImGui::SetNextWindowSize(ImVec2(400, 0));
 	ImGui::Begin("Menu");
 	{
 		ImGui::Text("This is a text.");

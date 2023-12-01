@@ -5,7 +5,15 @@ namespace OSImGui
     bool OSImGui_Base::InitImGui(ID3D11Device* device, ID3D11DeviceContext* device_context)
     {
         ImGui::CreateContext();
-        ImGuiIO& io = ImGui::GetIO(); (void)io;
+        ImGuiIO& io = ImGui::GetIO();
+        (void)io;
+
+        ImFontAtlas* fontAtlas = new ImFontAtlas();
+        ImFontConfig arialConfig;
+        arialConfig.FontDataOwnedByAtlas = false;
+        ImFont* arialFont = fontAtlas->AddFontFromFileTTF("c:\\Windows\\Fonts\\msyhbd.ttc", 16.0f, &arialConfig, io.Fonts->GetGlyphRangesAll());
+
+        io.Fonts = fontAtlas;
 
         ImGui::StyleColorsDark();
         io.LogFilename = nullptr;
