@@ -12,6 +12,7 @@ void DrawCallBack()
 		static bool a = false, b = false, c = false, d = false, e = false, f = false;
 		static float Value1 = 25, Value2 = 75;
 		static float Color = 0.f;
+		static ImVec4 ColorVec4 = ImColor(255, 0, 0, 255);
 		float min = 0, max = 100;
 		
 		Gui.MyCheckBox3("CheckBox3", &c);
@@ -20,7 +21,6 @@ void DrawCallBack()
 		Gui.SwitchButton("Switch Button", &e);
 		Gui.SwitchButton2("Switch Button 2", &a);
 		Gui.SwitchButton3("Switch Button 3", &b);
-		ImGui::ColorEdit4("Color Editor", &Color, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 		Gui.SliderScalarEx1("[Slider1]", ImGuiDataType_Float, &Value1, &min, &max, "%.1f", ImGuiSliderFlags_None);
 		Gui.SliderScalarEx2("[Slider2]", ImGuiDataType_Float, &Value2, &min, &max, "%.1f", ImGuiSliderFlags_None);
 	}ImGui::End();
@@ -34,7 +34,7 @@ void DrawCallBack()
 int main()
 {
 	try {
-		Gui.NewWindow("WindowName", Vec2(500, 500), DrawCallBack);
+		Gui.NewWindow("WindowName", Vec2(1280, 720), DrawCallBack);
 		//Gui.AttachAnotherWindow("Title","", DrawCallBack);
 	}
 	catch (OSImGui::OSException& e)

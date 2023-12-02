@@ -4,7 +4,56 @@
 // OS-ImGui Draw Functions
 namespace OSImGui
 {
-    // Applies to text rendered in a window
+    void OSImGui::ColorEditorEx1(const char* label, ImVec4* color, float width, float height, float Roundings)
+    {
+        ImGuiWindow* window = ImGui::GetCurrentWindow();
+        if (window->SkipItems)
+            return;
+
+        ImGuiContext& g = *GImGui;
+        const ImGuiStyle& style = g.Style;
+
+        const ImGuiID id = window->GetID(label);
+        const ImVec2 label_size = ImGui::CalcTextSize(label, NULL, true);
+        const ImVec2 frame_size(width, height);
+        const ImVec2 total_size(frame_size.x + style.FramePadding.x * 2, frame_size.y + style.FramePadding.y * 2);
+
+        const ImRect frame_bb(window->DC.CursorPos, { window->DC.CursorPos.x + total_size.x, window->DC.CursorPos.y + total_size.y });
+        const ImRect inner_bb(
+            { frame_bb.Min.x + style.FramePadding.x, frame_bb.Min.y + style.FramePadding.y },
+            { frame_bb.Max.x - style.FramePadding.x, frame_bb.Max.y - style.FramePadding.y });
+
+        ImGui::ItemSize(total_size, style.FramePadding.y);
+        if (!ImGui::ItemAdd(frame_bb, id))
+            return;
+        
+        if (!ImGui::ItemAdd(frame_bb, id))
+            return;
+
+        const bool hovered = ImGui::ItemHoverable(inner_bb, id);
+        if (hovered)
+            ImGui::SetHoveredID(id);
+
+        ImGui::RenderFrame(frame_bb.Min, frame_bb.Max, ImGui::GetColorU32(ImGuiCol_FrameBg), true, style.FrameRounding);
+
+        if (Roundings > 0.0f)
+        {
+            float MinX = frame_bb.Min.x + Roundings;
+            float MinY = frame_bb.Min.y + Roundings;
+            float MaxX = frame_bb.Max.x - Roundings;
+            float MaxY = frame_bb.Max.y - Roundings;
+            window->DrawList->AddRectFilled({ MinX,MinY }, { MaxX,MaxY }, ImGui::GetColorU32(ImGuiCol_FrameBg), style.FrameRounding);
+        }
+        ImGui::ColorPicker4(label, (float*)&color, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+
+        if (hovered && ImGui::IsMouseClicked(0))
+            ImGui::SetActiveID(id, window);
+
+        ImGui::Dummy(total_size);
+        ImGui::SameLine(0, style.ItemInnerSpacing.x);
+        ImGui::TextUnformatted(label, ImGui::FindRenderedTextEnd(label));
+    }
+
     void OSImGui::NewText(std::string Text, bool isCenter) {
         auto windowWidth = ImGui::GetWindowSize().x;
         auto textWidth = ImGui::CalcTextSize(Text.c_str()).x;
