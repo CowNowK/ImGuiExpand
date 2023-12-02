@@ -6,8 +6,11 @@ void DrawCallBack()
 	ImGui::SetNextWindowSize(ImVec2(400, 0));
 	ImGui::Begin("Menu", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
 	{
+		static ImColor FrameColor = ImColor(255, 70, 0, 255);
+		static ImColor TextColor = ImColor(255, 255, 255, 255);
 		Gui.NewText("This Text is centered", true);
 		Gui.NewTextColored("And colored it", ImColor(255,60,0,255), true);
+		Gui.StrokeText("Stroke Text", { 640,50 }, TextColor, FrameColor, 30.0f, true);
 		Gui.OpenWebpageButton("Open Webpage", "https://github.com/CowNowK/ImGuiExpand");
 		static bool a = false, b = false, c = false, d = false, e = false, f = false;
 		static float Value1 = 25, Value2 = 75;

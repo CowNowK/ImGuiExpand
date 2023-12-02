@@ -84,12 +84,12 @@ namespace OSImGui
         }
     }
 
-    void OSImGui::StrokeText(std::string Text, Vec2 Pos, ImColor Color, float FontSize, bool KeepCenter)
+    void OSImGui::StrokeText(std::string Text, Vec2 Pos, ImColor Color, ImColor FrameColor, float FontSize, bool KeepCenter)
     {
-        this->Text(Text, Vec2(Pos.x - 1, Pos.y + 1), ImColor(0, 0, 0), FontSize, KeepCenter);
-        this->Text(Text, Vec2(Pos.x - 1, Pos.y - 1), ImColor(0, 0, 0), FontSize, KeepCenter);
-        this->Text(Text, Vec2(Pos.x + 1, Pos.y + 1), ImColor(0, 0, 0), FontSize, KeepCenter);
-        this->Text(Text, Vec2(Pos.x + 1, Pos.y - 1), ImColor(0, 0, 0), FontSize, KeepCenter);
+        this->Text(Text, Vec2(Pos.x - 1, Pos.y + 1), FrameColor, FontSize, KeepCenter);
+        this->Text(Text, Vec2(Pos.x - 1, Pos.y - 1), FrameColor, FontSize, KeepCenter);
+        this->Text(Text, Vec2(Pos.x + 1, Pos.y + 1), FrameColor, FontSize, KeepCenter);
+        this->Text(Text, Vec2(Pos.x + 1, Pos.y - 1), FrameColor, FontSize, KeepCenter);
         this->Text(Text, Pos, Color, FontSize, KeepCenter);
     }
 

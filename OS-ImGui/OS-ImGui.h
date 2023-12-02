@@ -13,7 +13,7 @@ namespace OSImGui
 		void ColorEditorEx1(const char* label, ImVec4* color, float width, float height, float Roundings = 0);		// SUCKED
 
 		void Text(std::string Text, Vec2 Pos, ImColor Color, float FontSize = 15, bool KeepCenter = false);			// Draw a text
-		void StrokeText(std::string Text, Vec2 Pos, ImColor Color, float FontSize = 15, bool KeepCenter = false);	// Draw a Stroke Text
+		void StrokeText(std::string Text, Vec2 Pos, ImColor Color, ImColor FrameColor, float FontSize = 15, bool KeepCenter = false);	// Draw a Stroke Text
 		void NewText(std::string Text, bool isCenter);																// Draw a text, but applies to text rendered in a window
 		void NewTextColored(std::string Text, ImColor Color, bool isCenter);										// Same as NewText(), but u can customize its color.
 
