@@ -36,3 +36,4 @@
 /.vs/OS-ImGui
 /OS-ImGui/$(OutDir$(TargetName)$(TargetExt)
 /OS-ImGui/imgui.ini
+/.vs
