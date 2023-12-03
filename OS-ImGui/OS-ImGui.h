@@ -1,6 +1,5 @@
 #pragma once
 #include "OS-ImGui_External.h"
-
 namespace OSImGui
 {
 #ifdef _CONSOLE
@@ -10,6 +9,8 @@ namespace OSImGui
 #endif
 	{
 	public:
+		bool LoadTextureFromFile(const char* filename, ID3D11ShaderResourceView** out_srv, int* out_width, int* out_height);
+		bool LoadTextureFromMemory(unsigned char* Memory, UINT size, ID3D11ShaderResourceView** out_srv, int* out_width, int* out_height);
 		void ColorEditorEx1(const char* label, ImVec4* color, float width, float height, float Roundings = 0);		// SUCKED
 
 		void Text(std::string Text, Vec2 Pos, ImColor Color, float FontSize = 15, bool KeepCenter = false);			// Draw a text

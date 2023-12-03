@@ -56,6 +56,12 @@
     <ClInclude Include="OS-ImGui_Base.h">
       <Filter>sources\OS-ImGuiBase</Filter>
     </ClInclude>
+    <ClInclude Include="dependencies\stb_image.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Image_Res.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
