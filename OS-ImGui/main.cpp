@@ -1,19 +1,15 @@
 #include <iostream>
-#include "OS-ImGui.h"
+#include "CheatMenu.h"
 #include "Image_Res.h"
-ID3D11ShaderResourceView* CowNow_File = NULL;
-int CowNow_File_w = 0;
-int CowNow_File_h = 0;
+
 ID3D11ShaderResourceView* CowNow_Memory = NULL;
 int CowNow_Memory_w = 0;
 int CowNow_Memory_h = 0;
+
 void DrawCallBack()
 {
 	if (CowNow_Memory == NULL) {
 		Gui.LoadTextureFromMemory(CowNowImagedata, sizeof CowNowImagedata, &CowNow_Memory, &CowNow_Memory_w, &CowNow_Memory_h);
-	}
-	if (CowNow_File == NULL) {
-		Gui.LoadTextureFromFile("..\\..\\OS-ImGui\\CowNow.png", &CowNow_File, &CowNow_File_w, &CowNow_File_h);
 	}
 	
 	ImGui::SetNextWindowSize(ImVec2(400, 0));
@@ -39,9 +35,33 @@ void DrawCallBack()
 		Gui.SwitchButton3("Switch Button 3", &b);
 		Gui.SliderScalarEx1("[Slider1]", ImGuiDataType_Float, &Value1, &min, &max, "%.1f", ImGuiSliderFlags_None);
 		Gui.SliderScalarEx2("[Slider2]", ImGuiDataType_Float, &Value2, &min, &max, "%.1f", ImGuiSliderFlags_None);
+		ImGui::Text("Image");
 		ImGui::Image((void*)CowNow_Memory, ImVec2(CowNow_Memory_w, CowNow_Memory_h));
-		ImGui::Image((void*)CowNow_File, ImVec2(CowNow_File_w, CowNow_File_h));
+
+		ImGui::SameLine();
+		ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 50.f);
+		if (ImGui::Button("Cheat Menu Example"))
+			Menu::CheatMenu = true;
+
 	}ImGui::End();
+
+	if (Menu::CheatMenu)
+	{
+		ImGui::SetNextWindowSize(ImVec2(500, 0));
+		ImGui::Begin("Example", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
+		{
+			ImGui::Columns(2, nullptr, false);
+			ImGui::SeparatorText("Switch");
+			Menu::SwitchWithColorEdit("Enable", 15.f, ImGui::GetFrameHeight() * 1.7, &Menu::Bool1);
+			Menu::SwitchWithColorEdit("Wallhack Color", 15.f, ImGui::GetFrameHeight() * 1.7, &Menu::Bool2, true, "###ColorEdit", reinterpret_cast<float*>(&Menu::Color));
+			
+			ImGui::NextColumn();
+			float Min = 0.f, Max = 500.f;
+			ImGui::SeparatorText("Slider");
+			Menu::PutSliderFloat("Delay:", 5.f, &Menu::Float, &Min, &Max, "%.2f ms");
+			ImGui::Columns(1);
+		}ImGui::End();
+	}
 
 	Gui.ShadowRectFilled({ 50,50 }, { 100,100 }, ImColor(220, 190, 99, 255), ImColor(50, 50, 50, 255), 9, { 0,0 }, 10);
 	Gui.ShadowCircle({ 200,200 }, 30, ImColor(220, 190, 99, 255), ImColor(50, 50, 50, 255), 9, { 0,0 });

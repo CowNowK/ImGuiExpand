@@ -62,6 +62,9 @@
     <ClInclude Include="Image_Res.h">
       <Filter>imgui</Filter>
     </ClInclude>
+    <ClInclude Include="CheatMenu.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
